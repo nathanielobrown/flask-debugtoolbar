@@ -75,6 +75,8 @@ def decode_text(value):
 def format_sql(query, args):
     if HAVE_SQLPARSE:
         query = sqlparse.format(query, reindent=True, keyword_case='upper')
+    
+    query = query % args
 
     if not HAVE_PYGMENTS:
         return decode_text(query)
